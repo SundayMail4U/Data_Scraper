@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template
 import subprocess
-import Twitter.OSINT_TEST1
 
 app = Flask(__name__, template_folder='./templates')
 
@@ -27,4 +26,4 @@ def test():
 # if __name__ == "__main__":
 #     app.run(debug='True')
 
-app.run()
+app.run(debug=True)
