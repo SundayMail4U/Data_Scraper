@@ -1,6 +1,5 @@
-
 import tweepy
-from tweetutilites import print_tweets
+# from tweetutilites import print_tweets
 import csv
 
 # Authenticate to Twitter
