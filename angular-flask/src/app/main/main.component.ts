@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {BackendApisService} from "../backend-apis.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-main',
@@ -7,10 +9,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  name = "Luis"
-  constructor() { }
+  rows = []
+  name:string = ''
+  visible = true;
+
+  nameSub:any;
+
+  constructor(private backendApisService:BackendApisService) {
+  }
 
   ngOnInit(): void {
+    this.nameSub = this.nameSubscription()
+  }
+
+  nameSubscription(){
+    return this.backendApisService.responseUpdated.subscribe((res: string) => {
+      this.name = res
+      console.log(res)
+    })
+  }
+
+  pressed(): void {
+
+    console.log("I'm about to call the API")
+
+    this.backendApisService.getHello()
+
+    console.log("I called it")
+
+
   }
 
 }

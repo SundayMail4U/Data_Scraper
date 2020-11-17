@@ -7,11 +7,11 @@ app = Flask(__name__, template_folder='./templates')
 def index():
     return render_template('index.html')
 
-@app.route("/auth", methods=['POST'])
+@app.route("/auth", methods=['GET'])
 def echo():
-    credentials = request.form['text']
-    return request.form['text'] + " Sent for authentication"
-    # return 200
+    # credentials = request.form['text']
+    # return request.form['text'] + " Sent for authentication"
+    return "Hello"
 
 @app.route("/reddit", methods=['POST'])
 def calc():
