@@ -1,12 +1,31 @@
-requirements
+Requirements
+
+How to Use this Script:
+1) Create Reddit account (or use existing).
+	- https://www.reddit.com/login
+
+2) Create Reddit API app.
+	- https://www.reddit.com/prefs/apps
+
+3) Copy keys, app name, username, and password into program. Code comment shows where.
+
+4) Install PRAW
+	- pip install praw
+	- https://praw.readthedocs.io/en/latest/getting_started/installation.html
+
+5) Install Pandas
+	- pip install pandas
+	- https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html
+
+6) Run program
+	- Input name of subreddit to scrape. Excluding "r/".
+	- Input number of posts to scrape. (limit is 1000)
+	- Input number of posts to scrape from the authors of those posts. (limit is 1000)
+
+7) The data file will be saved in the same folder where the file is located. 
 
 
-Reddit:
-https://www.reddit.com/login
-
-Reddit Developer Account:
-https://www.reddit.com/prefs/apps
-
+Sources
 
 Latest Python:
 https://www.python.org/downloads/release/python-390/
@@ -18,6 +37,13 @@ https://praw.readthedocs.io/en/latest/getting_started/installation.html
 Install Pandas:
 pip install pandas
 https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html
+
+
+Reddit:
+https://www.reddit.com/login
+
+Reddit Developer Account:
+https://www.reddit.com/prefs/apps
 
 
 PRAW Docs:
