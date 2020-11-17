@@ -86,8 +86,12 @@ print("Formatting dates...")
 _timestamp = users_topics_data["timestamp"].apply(get_date)
 users_topics_data = users_topics_data.assign(created = _timestamp)
 
+# input filename
+filename = input("Enter filename (excluding extension): ")
+full_filename = filename + ".csv"
+
 # output data into csv file
-users_topics_data.to_csv('related_subreddits.csv', index=False)
+users_topics_data.to_csv(full_filename, index=False)
 
 # notify completion
 print("Done")
