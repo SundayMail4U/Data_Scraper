@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template
 import subprocess
 
+# import reddit.reddit_api
+
 app = Flask(__name__, template_folder='./templates')
 
 @app.route("/")
@@ -11,11 +13,12 @@ def index():
 def echo():
     # credentials = request.form['text']
     # return request.form['text'] + " Sent for authentication"
+
     return "Hello"
 
-@app.route("/reddit", methods=['POST'])
-def calc():
-    subprocess.call('calc.exe')
+@app.route("/Reddit", methods=['POST'])
+def reddit():
+    # reddit.reddit_api
     return index()
 
 @app.route("/test", methods=['POST'])

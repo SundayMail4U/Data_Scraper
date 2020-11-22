@@ -1,11 +1,15 @@
-<h1>Angular works!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.component.css">
+</head>
+<body>
 
-<p>Hello How are you</p>
+  <h1>SundayMail4U</h1>
 
-<div *ngIf="visible">
-  <app-dashboard></app-dashboard>
-</div>
-
-{{name}}
-
-<input type="button" title="Click me" (click)="pressed()">
+  <div class="centerButton">
+    <button id="twitter" (click)="pressed()">Twitter</button>
+    <button id="reddit" (click)="pressed()">Reddit</button>
+  </div>
+</body>
+</html>
