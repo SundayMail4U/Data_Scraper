@@ -9,6 +9,20 @@ import praw
 import pandas as pd
 import datetime as dt
 
+#reddit instance object
+reddit = praw.Reddit("","")
+# dictionary to hold posts 
+data_dict = {"author":[],
+             "subreddit":[],
+             "upvote_ratio":[],
+             "18+":[],
+             "title":[],
+             "post_id":[],
+             "body":[],
+             "url":[],
+             "comments":[],
+             "timestamp":[]}
+
 
 # method to create reddit instance
 def create_instance(client_id, client_secret, user_agent, username, password):
@@ -17,18 +31,16 @@ def create_instance(client_id, client_secret, user_agent, username, password):
                      user_agent = user_agent, \
                      username = username, \
                      password = password)
-    return reddit
 
 # method to scrape subreddit for number of posts, then scrape a number
-#            of posts from those authors
+# of posts from those authors.
 # paramters:
-# - instance of reddit
 # - subreddit title excluding "r/"
 # - sort type (top, new, hot, controversial, or gilded)
 # - num of posts to scrape from initial subreddit
 # - num of posts to scrape from each author of initial subreddit's posts
 # returns: json? csv?
-def scrape_related_subreddits(reddit, subreddit_title, sort, subreddit_posts_num, authors_posts_num):
+def scrape_related_subreddits(subreddit_title, sort, subreddit_posts_num, authors_posts_num):
     subreddit = reddit.subreddit(subreddit_title) # instance of subreddit
     posts = praw.models.ListingGenerator(reddit, "") # empty object to hold posts
 
@@ -44,34 +56,24 @@ def scrape_related_subreddits(reddit, subreddit_title, sort, subreddit_posts_num
     elif sort == "gilded":
         posts = subreddit.gilded(limit=subreddit_posts_num)
 
-    # dictionary to hold posts 
-    users_subreddits_dict = {"author":[],
-                             "subreddit":[],
-                             "upvote_ratio":[],
-                             "18+":[],
-                             "title":[],
-                             "post_id":[],
-                             "body":[],
-                             "url":[],
-                             "comments":[],
-                             "timestamp":[]}
+    # users_subreddits_dict = {"author":[],
 
     # loop through posts from first subreddit 
     for post in posts:
         # loop through specified number of posts by authors from first subreddit 
         for post in reddit.redditor(str(post.author)).submissions.new(limit=authors_posts_num):
-            users_subreddits_dict["author"].append(post.author)
-            users_subreddits_dict["subreddit"].append(post.subreddit)
-            users_subreddits_dict["upvote_ratio"].append(post.upvote_ratio)
-            users_subreddits_dict["18+"].append(post.over_18)
-            users_subreddits_dict["title"].append(post.title)
-            users_subreddits_dict["post_id"].append(post.id)
-            users_subreddits_dict["body"].append(post.selftext)
-            users_subreddits_dict["url"].append(post.url)
-            users_subreddits_dict["comments"].append(count_comments(post.comments))
-            users_subreddits_dict["timestamp"].append(post.created)
+            data_dict["author"].append(post.author)
+            data_dict["subreddit"].append(post.subreddit)
+            data_dict["upvote_ratio"].append(post.upvote_ratio)
+            data_dict["18+"].append(post.over_18)
+            data_dict["title"].append(post.title)
+            data_dict["post_id"].append(post.id)
+            data_dict["body"].append(post.selftext)
+            data_dict["url"].append(post.url)
+            data_dict["comments"].append(count_comments(post.comments))
+            data_dict["timestamp"].append(post.created)
 
-    return users_subreddits_dict
+    return data_dict
 
 # method to create csv ?
 def export_data:
