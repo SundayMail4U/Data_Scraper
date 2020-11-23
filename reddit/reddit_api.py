@@ -14,11 +14,11 @@ import praw
 import pandas as pd
 import datetime as dt
 
-# method to convert "created" timestamp from UNIX format to readable format 
+# method to convert "created" timestamp from UNIX format to readable format
 def get_date(created):
     return dt.datetime.fromtimestamp(created)
 
-# method to count comments on a post 
+# method to count comments on a post
 def count_comments(comments):
     count = 0
     for comment in comments:
@@ -27,7 +27,7 @@ def count_comments(comments):
 
 
 # !!! TO RUN, REPLACE ALL VALUES IN REDDIT INSTANCE BELOW !!!
-# create instance of the reddit API, 
+# create instance of the reddit API,
 # - uses OAuth credentials to connect to your reddit developer application
 reddit = praw.Reddit(client_id='YOUR_PERSONAL_USE_SCRIPT_HERE', \
                      client_secret='YOUR_SECRET_HERE', \
@@ -36,19 +36,19 @@ reddit = praw.Reddit(client_id='YOUR_PERSONAL_USE_SCRIPT_HERE', \
                      password='YOUR_PASSWORD_HERE')
 
 
-# get user-specified subreddit title 
+# get user-specified subreddit title
 subreddit_title = input('Enter name of subreddit (excluding "r/"): ')
 
-# create instance of subreddit 
+# create instance of subreddit
 subreddit = reddit.subreddit(subreddit_title)
 
-# get a thread of posts in the subreddit. 
+# get a thread of posts in the subreddit.
 # - can retrieve by: .top(), .new(), .hot(), .controversial(), or .gilded()
 num = int(input("Enter number of posts to scrape from the subreddit specifed above: "))
 print("Scraping " + subreddit_title + " subreddit thread...")
 subreddit_thread = subreddit.new(limit=num) # max limit is 1000
 
-# dictionary to hold posts 
+# dictionary to hold posts
 users_subreddits_dict = {"author":[],
                          "subreddit":[],
                          "upvote_ratio":[],
@@ -61,11 +61,11 @@ users_subreddits_dict = {"author":[],
                          "timestamp":[]}
 
 num = int(input("Enter number of posts to scrape from each author: "))
-print("Scraping authors' posts...") 
-# loop through posts in first subreddit 
+print("Scraping authors' posts...")
+# loop through posts in first subreddit
 for post in subreddit_thread:
     print("Scraping user: " + str(post.author))
-    # loop through other posts by authors from first subreddit 
+    # loop through other posts by authors from first subreddit
     for post in reddit.redditor(str(post.author)).submissions.new(limit=num):
         users_subreddits_dict["author"].append(post.author)
         users_subreddits_dict["subreddit"].append(post.subreddit)

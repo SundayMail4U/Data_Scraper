@@ -29,15 +29,22 @@ export class MainComponent implements OnInit {
     })
   }
 
-  pressed(): void {
+  twitterPressed(): void {
 
-    console.log("I'm about to call the API")
+    console.log("I'm about to call Twitter API")
 
-    this.backendApisService.getHello()
+    this.backendApisService.getTwitterAPI()
 
     console.log("I called it")
+  }
 
+  redditPressed(): void {
 
+    console.log("I'm about to call the Reddit backend code")
+
+    this.backendApisService.getRedditAPI()
+
+    console.log("I called it")
   }
 
 }
