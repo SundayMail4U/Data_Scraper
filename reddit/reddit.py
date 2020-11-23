@@ -1,7 +1,7 @@
 #! python3
 
 # ITMS 5/448 - Fall 2020 - IIT
-# Professor Maurice Dawson
+# Professor Dr. Maurice Dawson
 # Team Sunday Mail
 
 # imports
@@ -9,8 +9,13 @@ import praw
 import pandas as pd
 import datetime as dt
 
-#reddit instance object
-reddit = praw.Reddit("","")
+# credential dictionary
+cred = {"id":"",
+        "secret":"",
+        "agent":"",
+        "username":"",
+        "password":""}
+
 # dictionary to hold posts 
 data_dict = {"author":[],
              "subreddit":[],
@@ -23,14 +28,13 @@ data_dict = {"author":[],
              "comments":[],
              "timestamp":[]}
 
-
-# method to create reddit instance
-def create_instance(client_id, client_secret, user_agent, username, password):
-    reddit = praw.Reddit(client_id = client_id, \
-                     client_secret = client_secret, \
-                     user_agent = user_agent, \
-                     username = username, \
-                     password = password)
+# method to populate authorization variables
+def auth(client_id, client_secret, user_agent, username, password):
+    cred["id"] = client_id
+    cred["secret"] = client_secret
+    cred["agent"] = user_agent
+    cred["username"] = username
+    cred["password"] = password
 
 # method to scrape subreddit for number of posts, then scrape a number
 # of posts from those authors.
@@ -40,11 +44,12 @@ def create_instance(client_id, client_secret, user_agent, username, password):
 # - num of posts to scrape from initial subreddit
 # - num of posts to scrape from each author of initial subreddit's posts
 # returns: json? csv?
-def scrape_related_subreddits(subreddit_title, sort, subreddit_posts_num, authors_posts_num):
-    subreddit = reddit.subreddit(subreddit_title) # instance of subreddit
+def scrape(subreddit_title, sort, subreddit_posts_num, authors_posts_num):
+    reddit = init()
+    subreddit = reddit.subreddit(subreddit_title) # instance of subreddit 
     posts = praw.models.ListingGenerator(reddit, "") # empty object to hold posts
 
-    # scraping posts according to specified sort and specified number
+    # scraping posts according to specified sort and specified number 
     if sort == "top":
         posts = subreddit.top(limit=subreddit_posts_num)
     elif sort == "new":
@@ -55,8 +60,6 @@ def scrape_related_subreddits(subreddit_title, sort, subreddit_posts_num, author
         posts = subreddit.controversial(limit=subreddit_posts_num)
     elif sort == "gilded":
         posts = subreddit.gilded(limit=subreddit_posts_num)
-
-    # users_subreddits_dict = {"author":[],
 
     # loop through posts from first subreddit 
     for post in posts:
@@ -75,17 +78,28 @@ def scrape_related_subreddits(subreddit_title, sort, subreddit_posts_num, author
 
     return data_dict
 
-# method to create csv ?
-def export_data:
-    return None
 
-# method to convert "created" timestamp from UNIX format to readable format 
+# 
+# Helper Methods. Do not call from GUI.
+# 
+
+# creates and returns reddit instance
+def init():
+    reddit = praw.Reddit(client_id = cred["id"], \
+                         client_secret = cred["secret"], \
+                         user_agent = cred["agent"], \
+                         username = cred["username"], \
+                         password = cred["password"])
+    return reddit
+
+# converts "created" timestamp from UNIX format to readable format 
 def get_date(created):
     return dt.datetime.fromtimestamp(created)
 
-# method to count comments of a post 
+# counts comments of a post 
 def count_comments(comments):
     count = 0
     for comment in comments:
         count+=1
     return count
+
