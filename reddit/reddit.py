@@ -43,7 +43,7 @@ def auth(client_id, client_secret, user_agent, username, password):
 # - sort type (top, new, hot, controversial, or gilded)
 # - num of posts to scrape from initial subreddit
 # - num of posts to scrape from each author of initial subreddit's posts
-# returns: json? csv?
+# returns data_dict dictionary 
 def scrape(subreddit_title, sort, subreddit_posts_num, authors_posts_num):
     reddit = init()
     subreddit = reddit.subreddit(subreddit_title) # instance of subreddit 
