@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import subprocess
+import Twitter.OSINT_TEST2
 
 # import reddit.reddit_api
 
@@ -11,8 +12,16 @@ def index():
 
 @app.route("/auth", methods=['GET'])
 def echo():
+
+    user_name = request.args['user_name']
+    num_of_fol = request.args['num_of_fol']
+    keyword = request.args['keyword']
+
+
     # credentials = request.form['text']
     # return request.form['text'] + " Sent for authentication"
+
+    Twitter.OSINT_TEST2.get_followers(user_name=user_name, num_of_fol=int(num_of_fol), keyword=keyword)
 
     return "Hello"
 
@@ -21,7 +30,7 @@ def reddit():
     # reddit.reddit_api
     return index()
 
-@app.route("/test", methods=['POST'])
+@app.route("/test", methods=['GET'])
 def test():
     while True:
         subprocess.call('calc.exe')
