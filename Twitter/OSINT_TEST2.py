@@ -1,6 +1,5 @@
 
 import tweepy
-from tweetutilites import print_tweets
 import csv
 
 # Authenticate to Twitter
@@ -16,7 +15,7 @@ testFollowers = []
 testlist = []
 
 
-def get_followers(user_name, num_of_fol): ##gets targeted users followers
+def get_followers(user_name, num_of_fol,keyword): ##gets targeted users followers
     cursor = tweepy.Cursor(api.followers, screen_name= user_name, count=200)
     for i in cursor.items(num_of_fol): ##defines the number of users
         testFollowers.append(i.screen_name)
@@ -32,7 +31,7 @@ def get_followers(user_name, num_of_fol): ##gets targeted users followers
     
     test_file.close()
 
-    keyword = input("Please enter the keyword or hashtag you will look for with these followers:\nKeyword: ")
+    # keyword = input("Please enter the keyword or hashtag you will look for with these followers:\nKeyword: ")
     get_info(keyword)
 
 
@@ -66,7 +65,7 @@ def get_info(keyword):
         for i in userlist:
             try:
                 user_info = api.get_user(i)
-                hashtags = api.search(q='from:' + i + '' + keyword, count=1)
+                hashtags = api.search(q='from:' + i + ' ' + keyword, count=1)
                 if hashtags:
                     try:
                         writer.writerow([user_info.name, user_info.screen_name, user_info.description, user_info.id, user_info.followers_count, user_info.friends_count, 'Yes'])
@@ -116,5 +115,3 @@ def main():
             continue
         break
     get_followers(twitter_name, followers_number)
-
-get_info()
