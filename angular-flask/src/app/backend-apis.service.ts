@@ -12,16 +12,8 @@ export class BackendApisService {
   response:boolean = false
   responseUpdated:EventEmitter<boolean> = new EventEmitter<boolean>()
 
-  // getHello():Promise<any>{
-  //   console.log("About to")
-  //   return this.http.get('/auth',{responseType: 'text'}).
-  //   toPromise()
-  //     .then(response => {
-  //       this.response = response as string
-  //       this.responseUpdated.emit(this.response)
-  //     })
-  //   console.log("Called API")
-  // }
+  response:string = ''
+  responseUpdated:EventEmitter<string> = new EventEmitter<string>()
 
   getTwitterData(username:string, followersNumber:string, keyword:string):Promise<any>{
     return this.http.get('/getTwitterData?user_name=' + username + '&num_of_fol=' + followersNumber + '&keyword=' + keyword, {responseType: 'text'}).
@@ -42,5 +34,4 @@ export class BackendApisService {
         this.toaster.success('Reddit API successfully returned! Starting download')
       })
   }
-
 }
