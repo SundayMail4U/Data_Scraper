@@ -1,6 +1,6 @@
 Requirements
 
-How to Use this Script:
+How to Use reddit-api.py Script:
 1) Create Reddit account (or use existing).
 	- https://www.reddit.com/login
 
@@ -25,7 +25,6 @@ How to Use this Script:
 7) The data file will be saved in the same folder where the file is located. 
 
 
-Sources
 
 Latest Python:
 https://www.python.org/downloads/release/python-390/
