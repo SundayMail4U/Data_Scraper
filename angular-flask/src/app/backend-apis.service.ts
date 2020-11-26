@@ -11,14 +11,29 @@ export class BackendApisService {
   response:string = ''
   responseUpdated:EventEmitter<string> = new EventEmitter<string>()
 
-  getHello():Promise<any>{
-    console.log("About to")
-    return this.http.get('/auth',{responseType: 'text'}).
+  getTwitterAPI():Promise<any>{
+    console.log("About to call Twitter API")
+
+    return this.http.get('/twitter',{responseType: 'text'}).
     toPromise()
       .then(response => {
         this.response = response as string
         this.responseUpdated.emit(this.response)
       })
-    console.log("Called API")
+
+    console.log("Called Twitter API")
+  }
+
+  getRedditAPI():Promise<any>{
+    console.log("About to call Reddit API")
+
+    return this.http.get('/reddit',{responseType: 'text'}).
+    toPromise()
+    .then(response => {
+        this.response = response as string
+        this.responseUpdated.emit(this.response)
+      })
+
+    console.log("Called Reddit API")
   }
 }

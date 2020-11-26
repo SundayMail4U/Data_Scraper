@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Grace_K\PycharmProjects\Data_Scraper\angular-flask\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\Grace_K\PycharmProjects\Data_Scraper_new\angular-flask\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -33,15 +33,25 @@ class BackendApisService {
         this.response = '';
         this.responseUpdated = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
     }
-    getHello() {
-        console.log("About to");
-        return this.http.get('/auth', { responseType: 'text' }).
+    getTwitterAPI() {
+        console.log("About to call Twitter API");
+        return this.http.get('/twitter', { responseType: 'text' }).
             toPromise()
             .then(response => {
             this.response = response;
             this.responseUpdated.emit(this.response);
         });
-        console.log("Called API");
+        console.log("Called Twitter API");
+    }
+    getRedditAPI() {
+        console.log("About to call Reddit API");
+        return this.http.get('/reddit', { responseType: 'text' }).
+            toPromise()
+            .then(response => {
+            this.response = response;
+            this.responseUpdated.emit(this.response);
+        });
+        console.log("Called Reddit API");
     }
 }
 BackendApisService.ɵfac = function BackendApisService_Factory(t) { return new (t || BackendApisService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
@@ -285,9 +295,14 @@ class MainComponent {
             console.log(res);
         });
     }
-    pressed() {
-        console.log("I'm about to call the API");
-        this.backendApisService.getHello();
+    twitterPressed() {
+        console.log("I'm about to call Twitter API");
+        this.backendApisService.getTwitterAPI();
+        console.log("I called it");
+    }
+    redditPressed() {
+        console.log("I'm about to call the Reddit backend code");
+        this.backendApisService.getRedditAPI();
         console.log("I called it");
     }
 }
@@ -301,11 +316,11 @@ MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "button", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MainComponent_Template_button_click_6_listener() { return ctx.pressed(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MainComponent_Template_button_click_6_listener() { return ctx.twitterPressed(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Twitter");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "button", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MainComponent_Template_button_click_8_listener() { return ctx.pressed(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MainComponent_Template_button_click_8_listener() { return ctx.redditPressed(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Reddit");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();

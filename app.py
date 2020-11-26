@@ -2,6 +2,7 @@ from flask import Flask, request, render_template
 import subprocess
 import Twitter.OSINT_TEST2
 
+# import Twitter.OSINT_TEST1
 # import reddit.reddit_api
 
 app = Flask(__name__, template_folder='./templates')
@@ -25,15 +26,10 @@ def echo():
 
     return "Hello"
 
-@app.route("/Reddit", methods=['POST'])
+@app.route("/reddit", methods=['POST'])
 def reddit():
     # reddit.reddit_api
     return index()
-
-@app.route("/test", methods=['GET'])
-def test():
-    while True:
-        subprocess.call('calc.exe')
 
 # if __name__ == "__main__":
 #     app.run(debug='True')
