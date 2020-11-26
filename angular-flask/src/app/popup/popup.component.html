@@ -1,0 +1,5 @@
+<div class="popup-container" (click)="close()">
+  <div class="display-area fill bg shadow" (click)="$event.stopPropagation()">
+    <ng-content></ng-content>
+  </div>
+</div>

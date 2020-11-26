@@ -4,7 +4,7 @@
 # Professor Maurice Dawson
 # Team SundayMail
 
-# Desc: this program connects to the reddit api to discover other topics
+# Desc: this program connects to the Reddit api to discover other topics
 # of interest for users who post in a user-specified subreddit.
 # 1) scrapes the usernames of post authors in a user-specified subreddit.
 # 2) scrapes posts of those authors
@@ -27,8 +27,8 @@ def count_comments(comments):
 
 
 # !!! TO RUN, REPLACE ALL VALUES IN REDDIT INSTANCE BELOW !!!
-# create instance of the reddit API, 
-# - uses OAuth credentials to connect to your reddit developer application
+# create instance of the Reddit API,
+# - uses OAuth credentials to connect to your Reddit developer application
 reddit = praw.Reddit(client_id='YOUR_PERSONAL_USE_SCRIPT_HERE', \
                      client_secret='YOUR_SECRET_HERE', \
                      user_agent='YOUR_API_APPLICATION_NAME_HERE', \
