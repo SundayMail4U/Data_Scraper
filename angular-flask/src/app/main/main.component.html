@@ -2,14 +2,23 @@
 <html>
 <head>
   <link rel="stylesheet" href="main.component.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Carter+One&family=Fugaz+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <h1>SundayMail4U</h1>
+  <h1>Sunday
+    <img src="/static/images/mail.png" alt="Mail Image" id="mailImg">
+    4U
+  </h1>
 
-  <div class="centerButton">
-    <button id="twitter" (click)="twitterPressed()">Twitter</button>
-    <button id="reddit" (click)="redditPressed()">Reddit</button>
-  </div>
+  <section class="centerDiv">
+    <div id="twitter" (onClick)="twitterPressed()">
+      <img src="/static/images/twitter-logo.png" alt="Twitter Logo" id="twitterLogo">
+    </div>
+
+    <div id="reddit" (click)="redditPressed()">
+      <img src="/static/images/reddit-logo.png" alt="Reddit Logo" id="redditLogo">
+    </div>
+  </section>
 </body>
 </html>
