@@ -37,40 +37,41 @@ button:hover{
 }
 
 @media screen and (max-width: 500px) {
-  h1{
+  h1 {
     font-size: 40px;
   }
 
-  #mailImg{
+  #mailImg {
     width: 40px;
     height: 40px;
   }
 
-  .centerDiv{
+  .centerDiv {
     display: block;
   }
 
-  div{
+  div {
     width: fit-content;
   }
 
-  #twitter{
+  #twitter {
     margin: auto;
     margin-bottom: 10%;
   }
 
-  #twitterLogo{
+  #twitterLogo {
     margin: 30px 0;
     width: 200px;
   }
 
-  #reddit{
+  #reddit {
     margin: auto;
   }
 
-  #redditLogo{
+  #redditLogo {
     width: 200px;
   }
+}
 
   @media screen and (max-width: 800px) {
   h1{

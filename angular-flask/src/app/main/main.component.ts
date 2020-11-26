@@ -36,7 +36,6 @@ export class MainComponent implements OnInit {
 
   callTwitterAPI(): void {
 
-    this.loading = true;
 
     let username = (<HTMLInputElement>document.getElementById('twitter-username')).value;
     let followersNumbers = (<HTMLInputElement>document.getElementById('twitter-followers-number')).value;
@@ -46,13 +45,13 @@ export class MainComponent implements OnInit {
     if(username.length < 1 || followersNumbers.length < 1 || keyword.length < 1){
       window.alert("All fields must be provided! Try again.")
     }else{
+      this.loading = true;
       this.backendApisService.getTwitterData(username, followersNumbers, keyword)
     }
   }
 
   callRedditAPI(): void {
 
-    this.loading = true;
 
     let subredditTitle = (<HTMLInputElement>document.getElementById('reddit-subreddit')).value;
     let sortRadios = (<NodeListOf<HTMLInputElement>>document.getElementsByName('sort'));
@@ -70,6 +69,7 @@ export class MainComponent implements OnInit {
     if(subredditTitle.length < 1 || subredditPostNum.length < 1 || authorsPostNumber.length < 1){
       window.alert("All fields must be provided! Try again.")
     }else{
+      this.loading = true;
       this.backendApisService.getRedditData(subredditTitle, sort, subredditPostNum,authorsPostNumber)
     }
   }

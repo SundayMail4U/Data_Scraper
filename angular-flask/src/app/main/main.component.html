@@ -11,16 +11,12 @@
     4U
   </h1>
 
-  <div class="centerButton">
-    <button id="twitter" (click)="navigateToTwitter()">Twitter</button>
-    <button id="reddit" (click)="navigateToReddit()">Reddit</button>
-  </div>
   <section class="centerDiv">
-    <div id="twitter" (onClick)="twitterPressed()">
+    <div id="twitter" (click)="navigateToTwitter()">
       <img src="/static/images/twitter-logo.png" alt="Twitter Logo" id="twitterLogo">
     </div>
 
-    <div id="reddit" (click)="redditPressed()">
+    <div id="reddit" (click)="navigateToReddit()">
       <img src="/static/images/reddit-logo.png" alt="Reddit Logo" id="redditLogo">
     </div>
   </section>
