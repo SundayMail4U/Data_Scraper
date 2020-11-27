@@ -30,7 +30,6 @@ export class MainComponent implements OnInit {
   nameSubscription(){
     return this.backendApisService.responseUpdated.subscribe((res: boolean) => {
       this.loading = res
-      console.log(res)
     })
   }
 

@@ -8,11 +8,10 @@
   z-index: 100;
   display: inline-block;
   text-align: center;
-
 }
 
 .display-area{
-  margin-top: 80px;
+  margin-top: 5%;
   text-align: left;
   display: inline-block;
   width: 100%;
@@ -20,7 +19,7 @@
   max-height: 600px;
   height: auto;
   z-index: 105;
-  }
+}
 
 ::ng-deep header{
   padding: 12px;
@@ -50,4 +49,3 @@
   padding: 8px;
   text-align: right ;
 }
-

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <h1>Sunday
+  <h1 id="title">Sunday
     <img src="/static/images/mail.png" alt="Mail Image" id="mailImg">
     4U
   </h1>
@@ -26,8 +26,8 @@
 
 <app-popup *ngIf="twitter">
   <div class="popup-division">
-    <div style="text-align: left">
-      <button style="left: 0; background-color: #f14e4e; color: #d7d4d7; margin-left: 2px; margin-top: 2px" (click)="goBack()">Back</button>
+    <div id="popup-button">
+      <button id="popup-backButton" (click)="goBack()">Back</button>
     </div>
     <h1 class="twitter-title">Twitter Scraping API</h1>
     <form name="twitter-form" action="" method="get">
@@ -38,9 +38,8 @@
       <span class="twitter-title">Enter the keyword to search for</span>
       <input id="twitter-keyword" type="text">
       <button *ngIf="!loading" id="submit-twitter" (click)="callTwitterAPI()">SCRAPE!</button>
-      <img *ngIf="loading" src="spinner-twitter.gif">
+      <img *ngIf="loading" src="/static/spinner-twitter.gif">
     </form>
-
   </div>
 </app-popup>
 
@@ -86,7 +85,7 @@
 
 
       <button *ngIf="!loading" id="submit-reddit" (click)="callRedditAPI()">SCRAPE!</button>
-      <img *ngIf="loading" src="spinner-reddit.gif">
+      <img *ngIf="loading" src="/static/spinner-reddit.gif">
     </form>
   </div>
 </app-popup>

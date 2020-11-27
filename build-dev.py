@@ -14,12 +14,14 @@ for directory in directories:
 FLASK_STATIC_PATH = os.path.join(CURRENT_DIRECTORY, 'static')
 FLASK_TEMPLATES_PATH = os.path.join(CURRENT_DIRECTORY, 'templates')
 
-subprocess.call(('cd ' + ANGULAR_PROJECT_PATH + ' && START /B ng build --watch --base-href \\static\\'), shell=True)
+subprocess.call(('cd ' + ANGULAR_PROJECT_PATH + ' && START /B ng build --watch --deploy-url \\static\\'), shell=True)
 
 print(ANGULAR_PROJECT_PATH)
 print(DIST_PATH)
 print(FLASK_STATIC_PATH)
 print(FLASK_TEMPLATES_PATH)
+
+time.sleep(20.0)
 
 dir_exists = True
 
