@@ -36,18 +36,22 @@ def getRedditData():
     sort = request.args['sort']
     subreddit_posts_num = request.args['subreddit_posts_num']
     authors_posts_num = request.args['authors_posts_num']
+    global filename
+    filename = request.args['filename']
 
-    Reddit.reddit.scrape(subreddit_title, sort, int(subreddit_posts_num), int(authors_posts_num))
+    Reddit.reddit.scrape(subreddit_title=subreddit_title, sort=sort, subreddit_posts_num=int(subreddit_posts_num), authors_posts_num=int(authors_posts_num))
+    Reddit.reddit.save_csv(filename=filename, path=None, data=None)
+
     return "Success"
 
 @app.route("/downloadReddit", methods=['GET'])
 def downloadReddit():
-    # return send_file('user_info.csv',
-    #                  mimetype='text/csv',
-    #                  attachment_filename='user_info.csv',
-    #                  as_attachment=True)
-
-    return "Nothing"
+    attachmentFilename=filename + '.csv'
+    
+    return send_file(filename + '.csv',
+                     mimetype='text/csv',
+                     attachment_filename=attachmentFilename,
+                     as_attachment=True)
 
 
 app.run(debug=True)

@@ -22,8 +22,8 @@ export class BackendApisService {
       })
   }
 
-  getRedditData(subredditTitle:string, sort:string, subredditPostNum:string, authorsPostNumber:string):Promise<any>{
-    return this.http.get('/getRedditData?subreddit_title=' + subredditTitle + '&sort=' + sort + '&subreddit_posts_num=' + subredditPostNum + '&authors_posts_num=' + authorsPostNumber, {responseType: 'text'}).
+  getRedditData(subredditTitle:string, sort:string, subredditPostNum:string, authorsPostNumber:string, filename:string):Promise<any>{
+    return this.http.get('/getRedditData?subreddit_title=' + subredditTitle + '&sort=' + sort + '&subreddit_posts_num=' + subredditPostNum + '&authors_posts_num=' + authorsPostNumber + '&filename=' + filename, {responseType: 'text'}).
     toPromise()
       .then(response => {
         window.open('http://127.0.0.1:5000/downloadReddit')

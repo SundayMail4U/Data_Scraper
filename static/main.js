@@ -45,8 +45,8 @@ class BackendApisService {
             this.toaster.success('Twitter API successfully returned! Starting download');
         });
     }
-    getRedditData(subredditTitle, sort, subredditPostNum, authorsPostNumber) {
-        return this.http.get('/getRedditData?subreddit_title=' + subredditTitle + '&sort=' + sort + '&subreddit_posts_num=' + subredditPostNum + '&authors_posts_num=' + authorsPostNumber, { responseType: 'text' }).
+    getRedditData(subredditTitle, sort, subredditPostNum, authorsPostNumber, filename) {
+        return this.http.get('/getRedditData?subreddit_title=' + subredditTitle + '&sort=' + sort + '&subreddit_posts_num=' + subredditPostNum + '&authors_posts_num=' + authorsPostNumber + '&filename=' + filename, { responseType: 'text' }).
             toPromise()
             .then(response => {
             window.open('http://127.0.0.1:5000/downloadReddit');
@@ -444,15 +444,15 @@ function MainComponent_app_popup_13_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r0.loading);
 } }
-function MainComponent_app_popup_14_button_40_Template(rf, ctx) { if (rf & 1) {
+function MainComponent_app_popup_14_button_43_Template(rf, ctx) { if (rf & 1) {
     const _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MainComponent_app_popup_14_button_40_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11); const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r10.callRedditAPI(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 42);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function MainComponent_app_popup_14_button_43_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11); const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2); return ctx_r10.callRedditAPI(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "SCRAPE!");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
-function MainComponent_app_popup_14_img_41_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 42);
+function MainComponent_app_popup_14_img_44_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 43);
 } }
 function MainComponent_app_popup_14_Template(rf, ctx) { if (rf & 1) {
     const _r13 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
@@ -515,14 +515,18 @@ function MainComponent_app_popup_14_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, "Enter the desired authors' post number");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](39, "input", 38);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](40, MainComponent_app_popup_14_button_40_Template, 2, 0, "button", 39);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](41, MainComponent_app_popup_14_img_41_Template, 1, 0, "img", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "span", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](41, "Enter the desired filename");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](42, "input", 39);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](43, MainComponent_app_popup_14_button_43_Template, 2, 0, "button", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](44, MainComponent_app_popup_14_img_44_Template, 1, 0, "img", 41);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](43);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx_r1.loading);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx_r1.loading);
@@ -570,12 +574,13 @@ class MainComponent {
         }
         let subredditPostNum = document.getElementById('reddit-subreddit-post-number').value;
         let authorsPostNumber = document.getElementById('reddit-authors-post-number').value;
+        let filename = document.getElementById('reddit-filename').value;
         if (subredditTitle.length < 1 || subredditPostNum.length < 1 || authorsPostNumber.length < 1) {
             window.alert("All fields must be provided! Try again.");
         }
         else {
             this.loading = true;
-            this.backendApisService.getRedditData(subredditTitle, sort, subredditPostNum, authorsPostNumber);
+            this.backendApisService.getRedditData(subredditTitle, sort, subredditPostNum, authorsPostNumber, filename);
         }
     }
     navigateToTwitter() {
@@ -592,7 +597,7 @@ class MainComponent {
     }
 }
 MainComponent.ɵfac = function MainComponent_Factory(t) { return new (t || MainComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_backend_apis_service__WEBPACK_IMPORTED_MODULE_1__["BackendApisService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"])); };
-MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MainComponent, selectors: [["app-main"]], decls: 15, vars: 2, consts: [["href", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtrustConstantResourceUrl"]("https://fonts.googleapis.com/css2?family=Bungee&family=Carter+One&family=Fugaz+One&display=swap"), "rel", "stylesheet"], ["id", "title"], ["src", "/static/images/mail.png", "alt", "Mail Image", "id", "mailImg"], [1, "centerDiv"], ["id", "twitter", 3, "click"], ["src", "/static/images/twitter-logo.png", "alt", "Twitter Logo", "id", "twitterLogo"], ["id", "reddit", 3, "click"], ["src", "/static/images/reddit-logo.png", "alt", "Reddit Logo", "id", "redditLogo"], [4, "ngIf"], [1, "popup-division"], ["id", "popup-button"], ["id", "popup-backButton", 3, "click"], [1, "twitter-title"], ["name", "twitter-form", "action", "", "method", "get"], ["id", "twitter-username", "type", "text"], ["id", "twitter-followers-number", "type", "text"], ["id", "twitter-keyword", "type", "text"], ["id", "submit-twitter", 3, "click", 4, "ngIf"], ["src", "/static/spinner-twitter.gif", 4, "ngIf"], ["id", "submit-twitter", 3, "click"], ["src", "/static/spinner-twitter.gif"], [2, "text-align", "left"], [2, "left", "0", "background-color", "#4e9af1", "color", "#d7d4d7", "margin-left", "2px", "margin-top", "2px", 3, "click"], [1, "reddit-title"], ["id", "reddit-subreddit", "type", "text"], [1, "outer-block-again"], [1, "block-again"], ["id", "sortTop", "type", "radio", "name", "sort", "value", "top", "checked", "checked", 1, "not-centered"], ["for", "sortTop", 1, "reddit-title"], ["id", "sortNew", "type", "radio", "name", "sort", "value", "new", 1, "not-centered"], ["for", "sortNew", 1, "reddit-title"], ["id", "sortHot", "type", "radio", "name", "sort", "value", "hot", 1, "not-centered"], ["for", "sortHot", 1, "reddit-title"], ["id", "sortControversial", "type", "radio", "name", "sort", "value", "controversial", 1, "not-centered"], ["for", "sortControversial", 1, "reddit-title"], ["id", "sortGilded", "type", "radio", "name", "sort", "value", "gilded", 1, "not-centered"], ["for", "sortGilded", 1, "reddit-title"], ["id", "reddit-subreddit-post-number", "type", "text"], ["id", "reddit-authors-post-number", "type", "text"], ["id", "submit-reddit", 3, "click", 4, "ngIf"], ["src", "/static/spinner-reddit.gif", 4, "ngIf"], ["id", "submit-reddit", 3, "click"], ["src", "/static/spinner-reddit.gif"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
+MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: MainComponent, selectors: [["app-main"]], decls: 15, vars: 2, consts: [["href", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtrustConstantResourceUrl"]("https://fonts.googleapis.com/css2?family=Bungee&family=Carter+One&family=Fugaz+One&display=swap"), "rel", "stylesheet"], ["id", "title"], ["src", "/static/images/mail.png", "alt", "Mail Image", "id", "mailImg"], [1, "centerDiv"], ["id", "twitter", 3, "click"], ["src", "/static/images/twitter-logo.png", "alt", "Twitter Logo", "id", "twitterLogo"], ["id", "reddit", 3, "click"], ["src", "/static/images/reddit-logo.png", "alt", "Reddit Logo", "id", "redditLogo"], [4, "ngIf"], [1, "popup-division"], ["id", "popup-button"], ["id", "popup-backButton", 3, "click"], [1, "twitter-title"], ["name", "twitter-form", "action", "", "method", "get"], ["id", "twitter-username", "type", "text"], ["id", "twitter-followers-number", "type", "text"], ["id", "twitter-keyword", "type", "text"], ["id", "submit-twitter", 3, "click", 4, "ngIf"], ["src", "/static/spinner-twitter.gif", 4, "ngIf"], ["id", "submit-twitter", 3, "click"], ["src", "/static/spinner-twitter.gif"], [2, "text-align", "left"], [2, "left", "0", "background-color", "#4e9af1", "color", "#d7d4d7", "margin-left", "2px", "margin-top", "2px", 3, "click"], [1, "reddit-title"], ["id", "reddit-subreddit", "type", "text"], [1, "outer-block-again"], [1, "block-again"], ["id", "sortTop", "type", "radio", "name", "sort", "value", "top", "checked", "checked", 1, "not-centered"], ["for", "sortTop", 1, "reddit-title"], ["id", "sortNew", "type", "radio", "name", "sort", "value", "new", 1, "not-centered"], ["for", "sortNew", 1, "reddit-title"], ["id", "sortHot", "type", "radio", "name", "sort", "value", "hot", 1, "not-centered"], ["for", "sortHot", 1, "reddit-title"], ["id", "sortControversial", "type", "radio", "name", "sort", "value", "controversial", 1, "not-centered"], ["for", "sortControversial", 1, "reddit-title"], ["id", "sortGilded", "type", "radio", "name", "sort", "value", "gilded", 1, "not-centered"], ["for", "sortGilded", 1, "reddit-title"], ["id", "reddit-subreddit-post-number", "type", "text"], ["id", "reddit-authors-post-number", "type", "text"], ["id", "reddit-filename", "type", "text"], ["id", "submit-reddit", 3, "click", 4, "ngIf"], ["src", "/static/spinner-reddit.gif", 4, "ngIf"], ["id", "submit-reddit", 3, "click"], ["src", "/static/spinner-reddit.gif"]], template: function MainComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "html");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "head");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "link", 0);
@@ -616,7 +621,7 @@ MainComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](13, MainComponent_app_popup_13_Template, 19, 2, "app-popup", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, MainComponent_app_popup_14_Template, 42, 2, "app-popup", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, MainComponent_app_popup_14_Template, 45, 2, "app-popup", 8);
     } if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](13);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.twitter);

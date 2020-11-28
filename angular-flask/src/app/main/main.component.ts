@@ -63,13 +63,14 @@ export class MainComponent implements OnInit {
     }
     let subredditPostNum = (<HTMLInputElement>document.getElementById('reddit-subreddit-post-number')).value;
     let authorsPostNumber = (<HTMLInputElement>document.getElementById('reddit-authors-post-number')).value;
+    let filename = (<HTMLInputElement>document.getElementById('reddit-filename')).value;
 
 
     if(subredditTitle.length < 1 || subredditPostNum.length < 1 || authorsPostNumber.length < 1){
       window.alert("All fields must be provided! Try again.")
     }else{
       this.loading = true;
-      this.backendApisService.getRedditData(subredditTitle, sort, subredditPostNum,authorsPostNumber)
+      this.backendApisService.getRedditData(subredditTitle, sort, subredditPostNum,authorsPostNumber, filename)
     }
   }
 
