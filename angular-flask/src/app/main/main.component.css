@@ -220,7 +220,7 @@ input.not-centered{
   }
 }
 
-@media screen and (max-height: 600px){
+@media screen and (max-height: 700px){
   .popup-division{
   background-color: #FFFFFF;
   display: block;
@@ -229,6 +229,7 @@ input.not-centered{
   margin-right: auto;
   overflow-y: scroll;
   height: 500px;
+  position: relative;
 }
 
   /* width */
@@ -254,4 +255,14 @@ input.not-centered{
   }
 }
 
+@media screen and (max-height: 550px){
+  .popup-division{
+    height: 400px;
+  }
+}
 
+@media screen and (max-height: 450px){
+  .popup-division{
+    height: 350px;
+  }
+}
