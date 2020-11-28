@@ -47,7 +47,7 @@ def getRedditData():
 @app.route("/downloadReddit", methods=['GET'])
 def downloadReddit():
     attachmentFilename=filename + '.csv'
-    
+
     return send_file(filename + '.csv',
                      mimetype='text/csv',
                      attachment_filename=attachmentFilename,
