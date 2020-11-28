@@ -10,10 +10,10 @@ import pandas as pd
 import datetime as dt
 
 # credential dictionary
-cred = {"id":"",
-        "secret":"",
-        "agent":"",
-        "username":"",
+cred = {"id":"cCBmjeLvTHnp0w",
+        "secret":"qVZTZFVfTbS8JzHr825Rljkd7vTFFQ",
+        "agent":"SundayMail4U",
+        "username":"Vagos699",
         "password":""}
 
 # dictionary to hold posts 
@@ -128,7 +128,7 @@ def save_csv(filename, path=None, data=None):
 # Helper Methods. Do not call from GUI.
 # 
 
-# creates and returns reddit instance
+# creates and returns Reddit instance
 def init():
     reddit = praw.Reddit(client_id = cred["id"], \
                          client_secret = cred["secret"], \

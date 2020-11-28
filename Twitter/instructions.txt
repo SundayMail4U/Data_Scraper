@@ -1,0 +1,11 @@
+Version: Python 3.7
+
+install libraries:
+
+pip install tweepy
+
+pip install pandas
+
+pip install numpy
+
+pip install geopy

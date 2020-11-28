@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.component.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Carter+One&family=Fugaz+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1 id="title">Sunday
+    <img src="/static/images/mail.png" alt="Mail Image" id="mailImg">
+    4U
+  </h1>
+
+  <section class="centerDiv">
+    <div id="twitter" (click)="navigateToTwitter()">
+      <img src="/static/images/twitter-logo.png" alt="Twitter Logo" id="twitterLogo">
+    </div>
+
+    <div id="reddit" (click)="navigateToReddit()">
+      <img src="/static/images/reddit-logo.png" alt="Reddit Logo" id="redditLogo">
+    </div>
+  </section>
+</body>
+</html>
+
+
+<app-popup *ngIf="twitter">
+  <div class="popup-division">
+    <div id="popup-button">
+      <button id="popup-backButton" (click)="goBack()">Back</button>
+    </div>
+    <h1 class="twitter-title">Twitter Scraping API</h1>
+    <form name="twitter-form" action="" method="get">
+      <span class="twitter-title">Enter your target username</span>
+      <input id="twitter-username" type="text">
+      <span class="twitter-title">Enter the desired number of followers to scrape</span>
+      <input id="twitter-followers-number" type="text">
+      <span class="twitter-title">Enter the keyword to search for</span>
+      <input id="twitter-keyword" type="text">
+      <button *ngIf="!loading" id="submit-twitter" (click)="callTwitterAPI()">SCRAPE!</button>
+      <img *ngIf="loading" src="/static/spinner-twitter.gif">
+    </form>
+  </div>
+</app-popup>
+
+
+<app-popup *ngIf="reddit">
+  <div class="popup-division">
+    <div style="text-align: left">
+      <button style="left: 0; background-color: #4e9af1; color: #d7d4d7; margin-left: 2px; margin-top: 2px" (click)="goBack()">Back</button>
+    </div>
+    <h1 class="reddit-title">Reddit Scraping API</h1>
+    <form name="twitter-form" action="" method="get">
+      <span class="reddit-title">Enter the desired subreddit title</span>
+      <input id="reddit-subreddit" type="text">
+
+      <span class="reddit-title">Select the desired sort</span>
+      <div class="outer-block-again">
+        <div class="block-again">
+          <input class="not-centered" id="sortTop" type="radio" name="sort" value="top" checked="checked">
+        <label class="reddit-title" for="sortTop">Top</label>
+        </div>
+        <div class="block-again">
+          <input class="not-centered" id="sortNew" type="radio" name="sort" value="new">
+        <label class="reddit-title" for="sortNew">New</label>
+        </div>
+        <div class="block-again">
+          <input class="not-centered" id="sortHot" type="radio" name="sort" value="hot" >
+        <label class="reddit-title" for="sortHot">Hot</label>
+        </div>
+        <div class="block-again">
+          <input class="not-centered" id="sortControversial" type="radio" name="sort" value="controversial" >
+        <label class="reddit-title" for="sortControversial">Controversial</label>
+        </div>
+        <div class="block-again">
+          <input class="not-centered" id="sortGilded" type="radio" name="sort" value="gilded" >
+        <label class="reddit-title" for="sortGilded">Gilded</label>
+        </div>
+      </div>
+
+      <span class="reddit-title">Enter the desired subreddit post number</span>
+      <input id="reddit-subreddit-post-number" type="text">
+      <span class="reddit-title">Enter the desired authors' post number</span>
+      <input id="reddit-authors-post-number" type="text">
+
+
+      <button *ngIf="!loading" id="submit-reddit" (click)="callRedditAPI()">SCRAPE!</button>
+      <img *ngIf="loading" src="/static/spinner-reddit.gif">
+    </form>
+  </div>
+</app-popup>
