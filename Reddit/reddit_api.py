@@ -61,22 +61,27 @@ users_subreddits_dict = {"author":[],
                          "timestamp":[]}
 
 num = int(input("Enter number of posts to scrape from each author: "))
-print("Scraping authors' posts...")
-# loop through posts in first subreddit
+print("Scraping authors' posts...") 
+# loop through posts in first subreddit 
 for post in subreddit_thread:
     print("Scraping user: " + str(post.author))
-    # loop through other posts by authors from first subreddit
-    for post in reddit.redditor(str(post.author)).submissions.new(limit=num):
-        users_subreddits_dict["author"].append(post.author)
-        users_subreddits_dict["subreddit"].append(post.subreddit)
-        users_subreddits_dict["upvote_ratio"].append(post.upvote_ratio)
-        users_subreddits_dict["18+"].append(post.over_18)
-        users_subreddits_dict["title"].append(post.title)
-        users_subreddits_dict["post_id"].append(post.id)
-        users_subreddits_dict["body"].append(post.selftext)
-        users_subreddits_dict["url"].append(post.url)
-        users_subreddits_dict["comments"].append(count_comments(post.comments))
-        users_subreddits_dict["timestamp"].append(post.created)
+
+    # verify author is not suspended
+    try:
+        # loop through other posts by authors from first subreddit 
+        for post in reddit.redditor(str(post.author)).submissions.new(limit=num):
+            users_subreddits_dict["author"].append(post.author)
+            users_subreddits_dict["subreddit"].append(post.subreddit)
+            users_subreddits_dict["upvote_ratio"].append(post.upvote_ratio)
+            users_subreddits_dict["18+"].append(post.over_18)
+            users_subreddits_dict["title"].append(post.title)
+            users_subreddits_dict["post_id"].append(post.id)
+            users_subreddits_dict["body"].append(post.selftext)
+            users_subreddits_dict["url"].append(post.url)
+            users_subreddits_dict["comments"].append(count_comments(post.comments))
+            users_subreddits_dict["timestamp"].append(post.created)
+    except:
+        print("User suspended.")
 
 # create data frame with dictionary
 users_topics_data = pd.DataFrame(users_subreddits_dict)
