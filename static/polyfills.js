@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Grace_K\PycharmProjects\Data_Scraper_new\angular-flask\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\Users\luisf\Documents\GitHub\Data_Scraper\angular-flask\src\polyfills.ts */"hN/g");
 
 
 /***/ }),

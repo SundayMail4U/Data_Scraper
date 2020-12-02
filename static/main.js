@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Grace_K\PycharmProjects\Data_Scraper_new\angular-flask\src\main.ts */"zUnb");
+module.exports = __webpack_require__(/*! C:\Users\luisf\Documents\GitHub\Data_Scraper\angular-flask\src\main.ts */"zUnb");
 
 
 /***/ }),
@@ -40,7 +40,7 @@ class BackendApisService {
         return this.http.get('/getTwitterData?user_name=' + username + '&num_of_fol=' + followersNumber + '&keyword=' + keyword, { responseType: 'text' }).
             toPromise()
             .then(response => {
-            window.open('http://127.0.0.1:5000/downloadTwitter');
+            window.open(window.location.href + '/downloadTwitter');
             this.responseUpdated.emit(false);
             this.toaster.success('Twitter API successfully returned! Starting download');
         });
@@ -49,7 +49,7 @@ class BackendApisService {
         return this.http.get('/getRedditData?subreddit_title=' + subredditTitle + '&sort=' + sort + '&subreddit_posts_num=' + subredditPostNum + '&authors_posts_num=' + authorsPostNumber + '&filename=' + filename, { responseType: 'text' }).
             toPromise()
             .then(response => {
-            window.open('http://127.0.0.1:5000/downloadReddit');
+            window.open(window.location.href + '/downloadReddit');
             this.responseUpdated.emit(false);
             this.toaster.success('Reddit API successfully returned! Starting download');
         });
