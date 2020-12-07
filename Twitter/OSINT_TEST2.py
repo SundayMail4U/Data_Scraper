@@ -20,7 +20,7 @@ def get_followers(user_name, num_of_fol,keyword): ##gets targeted users follower
     for i in cursor.items(num_of_fol): ##defines the number of users
         testFollowers.append(i.screen_name)
 
-    test_file = open('testfile.csv', 'w', newline='') ##
+    test_file = open('testfile.csv', 'w', newline='') ##Creates file for data analysis
 
     with test_file:
 
@@ -35,7 +35,7 @@ def get_followers(user_name, num_of_fol,keyword): ##gets targeted users follower
     get_info(keyword)
 
 
-def get_info(keyword):
+def get_info(keyword): ##extracts followers information against keyword search
 
     csv_list = []
     userlist = []
@@ -62,7 +62,7 @@ def get_info(keyword):
     with userInfoFile:
 
         writer = csv.writer(userInfoFile)
-        for i in userlist:
+        for i in userlist: ##extracts data for followers and looks to see if their history includes keyword
             try:
                 user_info = api.get_user(i)
                 hashtags = api.search(q='from:' + i + ' ' + keyword, count=1)
@@ -96,7 +96,7 @@ def test_auth():
         print("Error during authentication")
 
 
-def main():
+def main(): ##main test function to test run functions for data scraping
     test_auth()
     while True:
         try:
